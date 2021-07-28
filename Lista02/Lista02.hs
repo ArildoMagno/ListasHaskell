@@ -1,6 +1,6 @@
 
 
---FALTA FAZER: 5,7  , 11, 14,15
+--FALTA FAZER: 5,7,14
 
 
 
@@ -102,19 +102,49 @@ insere_ultima_posicao a lista | (verifica_elemento_lista a lista)==False = inser
 --10)Crie uma função recursiva que recebe uma lista de inteiros e
 --retorna o maior elemento.
 maior_elemento_lista::[Int] -> Int
-maior_elemento_lista lista= encontraMaior lista 0
+maior_elemento_lista lista= encontra_maior lista 0
 
-encontraMaior :: [Int] -> Int -> Int
-encontraMaior [] acc = acc
-encontraMaior (h : rest) acc
-  | h > acc = encontraMaior
+encontra_maior :: [Int] -> Int -> Int
+encontra_maior [] acc = acc
+encontra_maior (h : rest) acc
+  | h > acc = encontra_maior
  rest h
-  | otherwise = encontraMaior
+  | otherwise = encontra_maior
  rest acc
 
 
 
- --11)
+-- 11) Defina as seguintes listas por compreensão:
+
+-- a) [0,3,6,9,12,15]
+mult_tres :: [Integer]
+mult_tres = [x | x <- [0 .. 15], x `mod` 3 == 0]
+
+-- b) Os múltiplos de 2 e 3 entre 0 e 20.
+multiplos_dois_tres :: [Integer]
+multiplos_dois_tres = [x | x <- [0 .. 20], even x && x `mod` 3 == 0]
+
+-- c) [[1],[2],[3],[4],[5]]
+listas_encadeadas :: [[Integer]]
+listas_encadeadas = [[x] | x <- [1 .. 5]]
+
+-- d) [[1], [1,1], [1,1,1], [1,1,1,1], [1,1,1,1,1]]
+listas_encadeadas_uns :: (Eq t, Num t, Num a) => t -> [a]
+listas_encadeadas_uns 0 = []
+listas_encadeadas_uns n = 1 : listas_encadeadas_uns (n - 1)
+
+lista_N :: [[Integer]]
+lista_N = [listas_encadeadas_uns x | x <- [1 .. 5]]
+
+
+-- e)[(1,3),(1,2),(1,1),(2,3),(2,2),(2,1),(3,3),(3,2),(3,1)].
+listas_encadeadas_tuplas :: [(Integer, Integer)]
+listas_encadeadas_tuplas = [(x, y) | x <- [1, 2, 3], y <- [3, 2, 1]]
+
+
+
+
+
 
 
 
