@@ -1,5 +1,5 @@
-
---FALTA FAZER: 13
+-- Arildo Magno de Macedo
+-- Matricula: 0040117
 
 --1)Crie uma função para verificar se uma letra é minúscula (Não use funções do Prelude).
 letra_minuscula:: Char -> Bool
@@ -150,55 +150,30 @@ remover_ultimo_elemento_lista (x:xs) = x : remover_ultimo_elemento_lista xs
 
 
 
+-- 13) Considere o algoritmo a seguir que gera uma seqüência de números
+-- naturais não nulos, a partir de um número natural n > 0. Se n for par,
+-- divida-o por 2. Se n for ímpar, multiplique-o por 3 e some 1. Repita este
+-- processo com o novo valor de n, até que ele seja igual a 1, se possível.
+-- Por exemplo, para n = 22, a seqüência é: 22, 11, 34, 17, 52, 26, 13, 40,
+-- 20, 10, 5, 16, 8, 4, 2 e 1. Para cada n, define-se o tamanho do ciclo de
+-- n como a quantidade de números da seqüência gerada, incluindo o número 1.
+-- No exemplo acima, o tamanho do ciclo para n = 22 é 16. Defina uma função
+-- tamciclo(n) que dê como resultado o tamanho do ciclo de n.
+-- algoritmo :: Num -> Num
+-- algoritmo :: (Eq a, Num p, Fractional a, Integral a) => a -> p
+-- calcular :: (Num a, Integral a) => a -> a
 
-{--
-13) Considere o algoritmo a seguir que gera uma seqüência de números
-naturais não nulos, a partir de um número natural n > 0. 
-Se n for par,divida-o por 2. 
-Se n for ímpar, multiplique-o por 3 e some 1. 
+calculo_tam_ciclo :: Integral a => a -> a
+calculo_tam_ciclo n
+  | n `mod` 2 == 0 = (n `div` 2)
+  | otherwise = ((n * 3) + 1)
 
-Repita este processo com o novo valor de n, até que ele seja igual a 1, se possível.
+gerarLista :: Integral a => a -> [a]
+gerarLista 1 = [1]
+gerarLista n = n : gerarLista (calculo_tam_ciclo n)
 
-Por exemplo, para n = 22, a seqüência 
-é: 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2 e 1.
-Para cada n, define-se o tamanho do ciclo de n como a quantidade de números da seqüência gerada, 
-incluindo o número 1.
-No exemplo acima, o tamanho do ciclo para n = 22 é 16.
- 
-Defina uma função tamciclo(n) que dê como resultado o tamanho do ciclo de n.
---}
-
-
-tam_ciclo::Float->Int
-tam_ciclo numeral= tam_lista (adicionar_lista_ciclo [] numeral)
-
-
-tam_lista::[Float]->Int
-tam_lista [] =0
-tam_lista (_:xs) = 1+tam_lista xs
-
-
-adicionar_lista_ciclo::[Float]->Float->[Float]
-adicionar_lista_ciclo [] numeral = [] ++ [numeral]
-adicionar_lista_ciclo (_:xs) numeral = xs ++ [calculo_ciclo_base numeral]
-
-
-
-
-
-calculo_ciclo_base::Float->Float
-calculo_ciclo_base numero | toInt(numero) `mod` 2 == 0 =  toFloat(toInt(numero))/2
-                          | otherwise = toFloat((toInt(numero)*3)+1)
-
-
-
-toInt :: Float -> Int
-toInt x = round x
-toFloat :: Int -> Float
-toFloat x = toFloat x
-
-
---CORRIGIR BUG QUE TA SAINDO SÓ 1
+tamCiclo :: Integral a => a -> Int
+tamCiclo n = length (gerarLista n)
 
 
 
