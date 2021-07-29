@@ -1,5 +1,8 @@
--- Arildo Magno de Macedo
--- Matricula: 0040117
+--
+--Aluno: Arildo Magno
+--Matricula: 0040117    
+--
+
 
 --1)Crie uma função para verificar se uma letra é minúscula (Não use funções do Prelude).
 letra_minuscula:: Char -> Bool

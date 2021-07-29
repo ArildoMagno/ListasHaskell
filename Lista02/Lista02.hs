@@ -1,8 +1,7 @@
-
-
---FALTA FAZER: 5,7,14
-
-
+--
+--Aluno: Arildo Magno
+--Matricula: 0040117    
+--
 
 
 --1) Crie uma função para retornar a cabeça de uma lista.
@@ -51,10 +50,8 @@ verifica_elemento_lista a (x:xs) = if a == x then True
 --5)Crie uma função recursiva chamada zipar, ela recebe duas listas e
 --retorna uma lista com tuplas dos elementos da mesma posição Ex:
 --[1,2] [a,b] => [(1,a),(2,b)].
-zipar::[a]->[a]->[(a,a)]
-zipar a b= zip a b
---nao pode fazer asim, tem que ser recursivo
-
+zipar (h1:t1) (h2:t2) = [(h1,h2)] ++ zipar t1 t2
+zipar [] [] = []
 
 
 
@@ -73,7 +70,9 @@ dobro (x:xs) = x*x : dobro xs
 --7) Defina a função and_list :: [Bool] -> Bool que retorna a conjunção
 --da lista. Por exemplo, andList [e1; e2;...;en] = e1&&e2&&...&&en
 
---Nao entendi a questão
+and_list :: [Bool] -> Bool
+and_list (h:hs) = h && and_list hs
+and_list [] = True
 
 
 
@@ -146,8 +145,6 @@ listas_encadeadas_tuplas = [(x, y) | x <- [1, 2, 3], y <- [3, 2, 1]]
 
 
 
-
-
 --12)Defina uma função que dada uma lista de inteiros, retorna o número
 --de elementos de valor superior a um número n qualquer.
 lista_elementos_maiores_que_x::Ord a=> a->[a]->[a]
@@ -166,3 +163,13 @@ intersect (x:xs) l | elem x l = x : intersect xs l
 
 
 --14)
+
+
+
+-- 15) Função para sequência: recebe dois números naturais n e m, e
+-- retorna uma lista com n elementos, onde o primeiro é m, o segundo é m+1,
+-- etc...
+-- Ex.: sequencia 0 2 ==> []
+-- sequencia 3 4 ==> [4,5,6]
+sequencia :: (Num a, Enum a) => Int -> a -> [a]
+sequencia n m = [x | x <- take n [m, m + 1 ..]]
